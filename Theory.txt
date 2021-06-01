@@ -1,10 +1,10 @@
-> 리액트 관련 작업을 시작하기 전 설치해야 할 부분 
+▼ 리액트 관련 작업을 시작하기 전 설치해야 할 부분 
     > node.js 
     > npm 
     > npx 
     > Visual studio code
     > Git 
-> 리액트 JS를 하기 전에 알아야 할 것 
+▼ 리액트 JS를 하기 전에 알아야 할 것 
     > HTML / CSS
         > div / span / flexbox / display / background color 
     > 바닐라 자바스크립트 
@@ -13,14 +13,79 @@
         > const / let / function(args)
     > node.js 
         > package.json 
-> 리액트 쓰는 회사 
+▼ 리액트 쓰는 회사 
     > Airbnb, npm , facebook 
     > 리액트의 선호도는 점점 늘고 있는 편이며 추후에 리액트가 사라진다고 해도 여전히 자바스크립트의 지식은 향상된다. 
 
-> create react app 
+▼ create react app 
     > 하나의 명령을 실행해서 React Web App 을 set up 할 수 있게 해준다. 
     > cmd 창에 npx create-react-app movie_app_2021 을 입력해준다 (원하는 폴더내에 생성)
     > README.md 에 있는 내용을 전면수정 / package.json 에 있는 내용 중 scripts 에는 starts, build 를 제외한 나머지 삭제 
     > yarn 은 npm 과 같은 역할 
 
-> git hub 안에 프로젝트를 넣어주기 
+▼ git hub 안에 프로젝트를 넣어주기 (1.1)
+    > git init 으로 파일을 담을 수 있는 빈공간을 만들어주고 
+    > github 에 들어가서 repository를 만든 다음 
+    > git status 해서 제대로 다 add 됐는지 확인 
+        > 안됐으면 add 하고 commit 해주기 
+    > git remote add origin https://github.com/happystrike1029/movie_app_react_pro.git
+        git branch -M main
+        git push -u origin main
+
+▼ 리액트 구성 (1.2) 
+    > index 목적에 맞춰 비워져 있음 
+    > src 에서 초반 세팅을 위해 지워줄 것 (기본부터 알기 위해서)
+    > 제일 처음 index.js 에서 삭제 
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import App from './App';
+
+    ReactDOM.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+    );
+        > 이 모양대로 내버려둔다. 
+    
+    > 다음 차례대로 파일 삭제 
+        > LOGO / serviceWorker / index.css / app.test.js / app.css 
+        > 남는 건 index.js 와 app.js 일 수 있게 
+    
+    > app.js 에서 남는 import 는 
+        > import React from 'react'; 
+        > 21년 버전에서는 상단과 같은 import 문구가 없었다, 그런데 작동은 했다. 
+        > App.js 에서도 마찬가지로 내용은 다 삭제하고 아래와 같은 형식으로 남겨둔다. 
+    import React from "react";
+
+    function App() {
+    return (
+        <div className="App"/>
+    );
+    }
+    export default App;
+
+    > 그 다음에 다시 npm start 
+    > 그 다음부터 수정된 사항은 브라우저에 자동으로 적용이 된다. 
+        > 실험 1.  > <div> Hello 넣어보기 </div> 
+            > 자동으로 refresh 되는 모습을 발견할 수 있다. 
+    > 실행후 왼쪽 버튼 검사(f12)로 소스를 확인하면 div id ="root" 밑에 글이 들어가 있는걸 확인할 수 있다 
+        > div id="root"는 어디에? > public 에 있는 index.html 안에 
+    > react는 무엇인가 ? > react는 당신이 거기에 쓰는 모든 요소를 생성한다는 것 
+        > 자바스크립트로 만들고 html로 넣어준다. 
+        > 이 부분은 어떻게 실행이 돼 ? index.js 를 보면 보다 명확하게 알 수 있다. 
+            > ReactDOM.render > application 을 render 
+                                > 즉 import App from './App'; 부분을 렌더 해주려고 하는 것이다. 
+                                > 리액트는 app.js 의 요소를 index.js 의 getElementById 를 통해 넣어주려고 한다. 
+    > react 가 빠른 이유 
+        > 소스코드에 처음부터 HTML 을 넣지 않고 HTML에서 HTML 을 추가하거나 제거하는 법을 알고 있기 때문 
+        > application 이 로드할 때 빈 HTML 을 로드하게 되고  그 다음 react가 HTML 을 밀어넣게 된다. 
+    > virtual DOM
+        > virtual document object model 
+        > 연관성 ? 존재하지 않는다는 말, 즉 index.html 소스코드에는 존재하지 않는다는 뜻이다.
+
+▼ 첫 React Component 만들어보기 
+> react를 살펴보기  
+    > localhost를 계속 유지하기 위해서는 NPM start 를 실행하고 console을 종료하지 말아야 한다. 
+    >  해당 페이지가 시작되지 않거나 찾을 수 없다는 메시지 > 서버를 제대로 실행하지 않았기 때문 
+    > 
