@@ -1,0 +1,26 @@
+> 리액트 관련 작업을 시작하기 전 설치해야 할 부분 
+    > node.js 
+    > npm 
+    > npx 
+    > Visual studio code
+    > Git 
+> 리액트 JS를 하기 전에 알아야 할 것 
+    > HTML / CSS
+        > div / span / flexbox / display / background color 
+    > 바닐라 자바스크립트 
+        > function / variable / classes 
+        > return / arugument / variable / constants 
+        > const / let / function(args)
+    > node.js 
+        > package.json 
+> 리액트 쓰는 회사 
+    > Airbnb, npm , facebook 
+    > 리액트의 선호도는 점점 늘고 있는 편이며 추후에 리액트가 사라진다고 해도 여전히 자바스크립트의 지식은 향상된다. 
+
+> create react app 
+    > 하나의 명령을 실행해서 React Web App 을 set up 할 수 있게 해준다. 
+    > cmd 창에 npx create-react-app movie_app_2021 을 입력해준다 (원하는 폴더내에 생성)
+    > README.md 에 있는 내용을 전면수정 / package.json 에 있는 내용 중 scripts 에는 starts, build 를 제외한 나머지 삭제 
+    > yarn 은 npm 과 같은 역할 
+
+> git hub 안에 프로젝트를 넣어주기 
