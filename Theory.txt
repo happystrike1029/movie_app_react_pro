@@ -120,7 +120,7 @@
     > react application은 한 번에 하나의 component만 rendering(렌더링) 할 수 있다는 것 
         > 따라서 모든 것은 application 안에 들어가야 한다. 
 
-▼ 재사용가능한 Component with JSX 
+▼ 재사용가능한 Component with JSX (2.1)
     > import Potato 를 지우고도 사용할 수 있는 방법. 
         > App.js 내에 Potato function 을 만들어준다. 
         > react 의 장점 > 재사용 가능한 component를 만들 수 있다는 점, 계속해서 반복해서 사용 가능. 
@@ -170,5 +170,32 @@
         > 내부에서 얻는 방법 > 인자값을 {} 내부에 써준다. props 가 아닌 props 내에 있는 세세한 인자값 
                             > 위와 같은 경우에는 {fav} 로 가져오기만 하면 된다. 
         > jsx 는 단지 HTML + javascript 
+
+▼ 동적인 Component
+    > 위와 같은 형태는 전혀 효율적이지 못하다. 계속해서 복붙해 넣을 수도 없는 노릇. 
+        > 데이터들은 웹사이트에서 온 데이터들, 갖고 있지 않은 데이터를 붙여 넣는 작업은 할수 없다.  
+    > 웹사이트에 동적인 데이터를 추가하는 방법. 
+    > array 로 데이터를 쌓고 자동적으로 food를 이름, 이미지 순으로 렌더링 하는 법? 
+        > 자바스크립트 함수를 사용한다. map 을 사용하는 법 
+    > map 은 array의 각 item에서 function을 실행하는 자바스크립트 function 
+        > function의 result 를 갖는 array를 다시 던져준다. 
+        > const friends = ["LEE", "KIM", "HWANG", "HAN"];
+        friends.map(current => {
+            cosole.log(current);
+            return 0
+        });
+
+        // 옛날 버전은 아래와 같다
+        friends.map(function(current){
+            console.log(current);
+            return 0;
+        });
+        > 해석 : map 은 funciton을 취해서 그 funciton을 array의 각 item에 적용 
+                : array [0,0,0,0]의 형태를 갖게 된다. 
         
+        > 심화버전 2
+        friends.map(friend => {
+            return friend + S2;
+        });
+    > 
 
