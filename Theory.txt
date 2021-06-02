@@ -119,7 +119,24 @@
     > !!! 즉 jsx는 javascript 안의 HTML이다. 
     > react application은 한 번에 하나의 component만 rendering(렌더링) 할 수 있다는 것 
         > 따라서 모든 것은 application 안에 들어가야 한다. 
-
+    // 2.0의 형태 
+    // function App() {
+    //   return (
+    //     // <div className="App"/>
+    //     <div> 
+    //       <h1>
+    //        Hello~!!
+    //       </h1>
+    //       <Food fav="rice"
+    //         // something = {true}
+    //         // papapa = {["hello", 1, 2, 3, 4, true]}
+    //       />
+    //       <Food fav="noodle" />
+    //       <Food fav="soup" />
+    //     </div>
+    //   );
+    // }
+    // export default App;`
 ▼ 재사용가능한 Component with JSX (2.1)
 > import Potato 를 지우고도 사용할 수 있는 방법. 
     > App.js 내에 Potato function 을 만들어준다. 
@@ -221,5 +238,95 @@
         > alt={name}은 시각장애인분들을 위한 것 
     > 다음에는 props에 대해 더 명확하게 할 것
         > props에 따라서 해당 글이 사라질수도, 이미지가 깨질수도 있기 때문에 우리가 원하는 props이 우리가 갖고 있는 props인지 체크하는 방법이 필요하다. 
-        
 
+▼ props 체크 
+> father component로 부터 전달받은 props가 우리가 예상한 props인지를 알아야 한다. 
+    > rating 을 달아준다. 
+    > node.js 에 따로 설치해줘야 함 (npm i prop-types)
+        > 항상 주의할 것 cd movie_app_2021 경로에서 설치해주기 상위 경로로 하면 인식을 못함 
+        > prop-types 의 역할 > 만약 picture라는 props가 잘못해서 images 로 들어갔을 때 이 component는 동작하지 않을거라고 알려주는 역할 
+        > Food.propTypes = {
+        name: PropTypes.string.isRequired,
+        picture : PropTypes.string.isRequired,
+        rating:PropTypes.string.isRequired
+        }; << 로 사용되나 강의에서 본 PropTypes는 사용할 수 없다. 대소문자를 구분하기 때문에. 
+        > 추후에 콘솔을 확인하면 prop type 관련 에러가 떠있다 
+            > rating의 type이 현재 숫자로 제공 됐지만 string을 기대하고 있다는 뜻
+            > number 로 바꿔주면 관련 에러가 사라진다.  
+            > 즉 콘솔을 확인하면서 에러를 체크할 수 있게 해주는 역할을 한다는 뜻 
+            > isRequired도 매번 쓸 필요 없다. 하지만 필수가 아니라는 뜻이기 때문에 에러가 없어짐. 
+                > undefined, number만 읽기 때문 
+            > propTypes react를 따로 찾아보면 관련 문서가 나온다. 
+            > 필수로 알아야 하는 것들 : jspx, props, state 
+
+    
+// import React from "react";
+// import PropTypes from "prop-types";
+// // 2.1 렌더링 하는 법 
+// const foodILike = [
+//   {
+//     id:1,
+//     name: "Kimchi",
+//     image:
+//       "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
+//     ,rating : 5
+//   },
+//   {
+//     id:2,
+//     name: "Samgyeopsal",
+//     image:
+//       "https://3.bp.blogspot.com/-hKwIBxIVcQw/WfsewX3fhJI/AAAAAAAAALk/yHxnxFXcfx4ZKSfHS_RQNKjw3bAC03AnACLcBGAs/s400/DSC07624.jpg"
+//     ,rating : 4.5
+//   },
+//   {
+//     id:3,
+//     name: "Bibimbap",
+//     image:
+//       "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/recipes/ck/12/03/bibimbop-ck-x.jpg?itok=RoXlp6Xb"
+//     ,rating : 4.7
+//   },
+//   {
+//     id:4,
+//     name: "Doncasu",
+//     image:
+//       "https://s3-media3.fl.yelpcdn.com/bphoto/7F9eTTQ_yxaWIRytAu5feA/ls.jpg"
+//     ,rating : 4.4
+//   },
+//   {
+//     id:5,
+//     name: "Kimbap",
+//     image:
+//       "http://cdn2.koreanbapsang.com/wp-content/uploads/2012/05/DSC_1238r-e1454170512295.jpg"
+//     ,rating : 4.6
+//   }
+// ];
+
+// function Food({name, picture, rating}){
+//   return (
+//     <div>
+//     <h1>I like {name}</h1>
+//     <h4>{rating}/5.0</h4>
+//     <img src={picture} alt={name} />
+//   </div>
+//   );
+// }
+
+// Food.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   picture : PropTypes.string.isRequired,
+//   rating:PropTypes.number.isRequired
+// };
+
+// function App() {
+//   return (
+//     <div> 
+//       {foodILike.map(dish =>(
+//         <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating}/>
+//       ))}
+//     </div>
+//     // dish는 object 
+//   );
+// }
+// export default App;
+
+>> 여기까지가 2.4 까지의 소스 
