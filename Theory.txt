@@ -89,7 +89,7 @@
     > localhost를 계속 유지하기 위해서는 NPM start 를 실행하고 console을 종료하지 말아야 한다. 
     >  해당 페이지가 시작되지 않거나 찾을 수 없다는 메시지 > 서버를 제대로 실행하지 않았기 때문 
     > index.js 에 있는 App 을 component 라고 부른다. 
-        > react 는 componenet와 함께 동작한다. 
+        > react 는 component와 함께 동작한다. 
         > component가 data를 보여주게 할 것 
         > component란? > HTML 을 반환하는 함수
             > 즉 우리는 function.application을 가지고 있고 이건 HTML을 반환한다. (App.js)
@@ -117,5 +117,58 @@
 
     > react는 component를 가져와서 브라우저가 이해할 수 있는 평범한 일반 HTML로 만든다. 
     > !!! 즉 jsx는 javascript 안의 HTML이다. 
-    > react application은 한 번에 하나의 componenet만 rendering(렌더링) 할 수 있다는 것 
+    > react application은 한 번에 하나의 component만 rendering(렌더링) 할 수 있다는 것 
         > 따라서 모든 것은 application 안에 들어가야 한다. 
+
+▼ 재사용가능한 Component with JSX 
+    > import Potato 를 지우고도 사용할 수 있는 방법. 
+        > App.js 내에 Potato function 을 만들어준다. 
+        > react 의 장점 > 재사용 가능한 component를 만들 수 있다는 점, 계속해서 반복해서 사용 가능. 
+        > component는 대문자로 시작해야하고, component로 정보를 보낼 수 있다. 
+        > father 가 children 에게 data를 어떻게 보낼까? 
+        > app이 어떻게 food에게 props를 사용해서 data를 보낼까? 
+        > props란? 뭐든지 component에 넣게되는 것들. 
+            > props는 어디로 가나? > argument로 간다. food의 첫번째 argument
+        import React from "react";
+
+        function Food({fav}){
+        //만약 {fav}를 빼줬더라면 props를 가져와서 props의 fav를 입력해줘야 한다. 
+        //console.log(props);
+        return <h1>I like {fav}</h1>;
+        }
+
+        /*
+        function Food(props){
+        return <h1>I like {props.fav}</h1>;
+        }
+        */
+
+
+        function App() {
+        return (
+            // <div className="App"/>
+            <div> 
+            <h1>
+            Hello~!!
+            </h1>
+            <Food fav="rice" // fav 라는 이름의 property 를 rice라는 value 로 준 것 
+                // something = {true}
+                // papapa = {["hello", 1, 2, 3, 4, true]}
+            />
+            <Food fav="noodle" />
+            <Food fav="soup" />
+            </div>
+        );
+        }
+        export default App;
+
+        > 위와 같은 형태 
+        > react를 통해 props 를 사용한다. > react는 전달한 props를 가져가는 일 
+        > father component에서 children component로 원하는 많은 props를 보낼 수 있다. 
+            > 모든 프로퍼티를 food function component의 인자로 넣을 것이다. 
+        > es6의 버전을 적용시킨 최신 자바스크립트를 사용 
+        > 내부에서 얻는 방법 > 인자값을 {} 내부에 써준다. props 가 아닌 props 내에 있는 세세한 인자값 
+                            > 위와 같은 경우에는 {fav} 로 가져오기만 하면 된다. 
+        > jsx 는 단지 HTML + javascript 
+        
+
