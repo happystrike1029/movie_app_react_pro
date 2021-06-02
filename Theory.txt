@@ -88,4 +88,34 @@
 > react를 살펴보기  
     > localhost를 계속 유지하기 위해서는 NPM start 를 실행하고 console을 종료하지 말아야 한다. 
     >  해당 페이지가 시작되지 않거나 찾을 수 없다는 메시지 > 서버를 제대로 실행하지 않았기 때문 
-    > 
+    > index.js 에 있는 App 을 component 라고 부른다. 
+        > react 는 componenet와 함께 동작한다. 
+        > component가 data를 보여주게 할 것 
+        > component란? > HTML 을 반환하는 함수
+            > 즉 우리는 function.application을 가지고 있고 이건 HTML을 반환한다. (App.js)
+    > 자바스크립트와 HTML 사이의 이런 조합을 jsx 라고 부른다.
+        > react에 특화된 개념이라 다른 곳에는 없는 유일한 것. 
+        > App 하나만 렌더링 된다는 특징이 있다. 
+            > 즉 내가 다른 파일 Potato.js 를 만든다고 해도 <App /> 옆에 <Potato />를 둔다고 실행되지 않는다. 
+            > 이런때는 App.js 파일 안에 Potato를 import 시켜준다. 즉 이런 형태로. 
+            
+            import React from "react";
+            import Potato from './Potato';
+
+            function App() {
+            return (
+                // <div className="App"/>
+                <div> 
+                <h1>
+                Hello~!!
+                </h1>
+                <Potato />
+                </div>
+            );
+            }
+            export default App;
+
+    > react는 component를 가져와서 브라우저가 이해할 수 있는 평범한 일반 HTML로 만든다. 
+    > !!! 즉 jsx는 javascript 안의 HTML이다. 
+    > react application은 한 번에 하나의 componenet만 rendering(렌더링) 할 수 있다는 것 
+        > 따라서 모든 것은 application 안에 들어가야 한다. 
