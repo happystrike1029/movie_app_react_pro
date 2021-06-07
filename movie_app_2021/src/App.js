@@ -7,11 +7,14 @@ class App extends React.Component{
     };
 
     add = () => {
-      console.log("add");
+      //console.log("add");
+      // this.setState(test => ({count : test.count + 1})); 가능 
+      this.setState(current => ({count : current.count + 1}));
     };
 
     minus = () =>{
-      console.log("minus");
+      //console.log("minus");
+      this.setState(current => ({count : current.count - 1}));
     };
 
     render(){

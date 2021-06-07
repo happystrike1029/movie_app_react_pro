@@ -331,7 +331,7 @@
 
 >> 여기서부터가 3.0의 소스 
 
-▼ Class 형식의 State
+▼ Class 형식의 State(3.0)
 > 전의 food 데이터는 state에 맞지 않기 때문에 삭제 
 > state > 동적 데이터와 함께 작업할 때 만들어진다. 변하는 데이터, 존재하지 않는 데이터등등 
 
@@ -342,13 +342,13 @@
         > function 이 아니기 때문에 render method 를 가지고 있다. 
     > 둘의 차이? 
         > function component 는 함수이고 뭔가를 return 한다. 그리고 screen 표시. 
-        > class component는 class이고 react component로 부터 받아와서 screenm에 표시된다. 
+        > class component는 class이고 react component로 부터 받아와서 screen에 표시된다. 
     > function component가 아닌 class component를 쓰는 이유 
         > state를 class component가 지니고 있기 때문 
         > state는 object 이다. 
             > component의 data를 넣을 공간으로 데이터는 언제든 변할 수 있다. 
             > 좋은 예제로는 counter 를 만드는 것 
-            > 바꿀 데이터를 state에 넣는 것 
+            > 바꿀 데이터를 state에 넣어준다.
             > state를 render 에 넣고 싶으면 아래와 같이 하면 된다. 
                 > this.state.count 
 
@@ -366,3 +366,32 @@
         > onClick={this.add()}의 형태로 나타내지 않는 이유 
             > ()는 즉시를 말하기 때문. 
             > ()없이는 클릭 했을 때만 나타나기에 적합하다. 
+
+▼ State를 다루는 방식(3.1)
+> state는 object 인데 뭘 할 수 있는지 
+    > this.state.count = 1; // 이 코드는 작용하지 않는다, 왜? 
+        > 절대 state를 직접 변경하지 말라는 코드의 경고문이 뜨기 때문 
+        > 정확한 이유 : 이런 식으로 코드 작성시 react는 render function을 refresh하기 않기 때문이다. 
+        > 결론 : 매번 state의 상태를 변경할 때 react가 render function을 알아서 호출해서 바꿔줄 수 있어야 함. 
+        > 이런 에러를 방지하기 위해 setState라는 함수를 자동적으로 생성할 수 있다. 
+
+> setState function 
+    > react는 우리가 언제 setState를 호출할 지를 안다. 
+        > 또한 언제 view를 refresh하길 원하는지를 안다. 
+        > render function을 refresh하길 원하는지를 안다. 
+    > 내가 현재 요청하고자 하는 기능 
+        > 내 state를 바꾸고 싶지만 react가 어떤 것이든 refresh해주길 원한다. 
+    > this.setState()
+        > 새로운 state를 취해야 한다. 
+        > 이해하기 어렵다면 > this.setState({count : 1});
+        > 즉 내가 setState를 호출하면 react는 1) state를 refresh하고, 또한 2) render function 을 호출할 것이다. 
+        > 부분 변경이 실시간으로 가능한 이유, virtual DOM 을 지니고 있기 때문 
+    > this.setState({count : this.state.count + 1});
+        > 좋은 예시의 코드는 아님 
+            > state에 너무 의존한 코드로 비춰짐, 성능상 좋지도 않음.  
+        > function 방식으로 바꿔줄 필요가 있음
+    > this.setState(current => ({count : current.count + 1}));
+        > this.state.count 를 대신해서 current를 이용해 counter를 만들어준다. 
+        > state를 set할 때, react에서 외부의 상태에 의존하지 않는 가장 좋은 방법.\
+> 가장 중요한 개념 
+    > 매순간 1) setState를 호출할 때 마다 react는 2) 새로운 state와 함께 3) render funciton을 호출할 것이다. 
