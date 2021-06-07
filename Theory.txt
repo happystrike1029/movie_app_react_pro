@@ -258,75 +258,111 @@
                 > undefined, number만 읽기 때문 
             > propTypes react를 따로 찾아보면 관련 문서가 나온다. 
             > 필수로 알아야 하는 것들 : jspx, props, state 
+    // import React from "react";
+    // import PropTypes from "prop-types";
+    // // 2.1 렌더링 하는 법 
+    // const foodILike = [
+    //   {
+    //     id:1,
+    //     name: "Kimchi",
+    //     image:
+    //       "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
+    //     ,rating : 5
+    //   },
+    //   {
+    //     id:2,
+    //     name: "Samgyeopsal",
+    //     image:
+    //       "https://3.bp.blogspot.com/-hKwIBxIVcQw/WfsewX3fhJI/AAAAAAAAALk/yHxnxFXcfx4ZKSfHS_RQNKjw3bAC03AnACLcBGAs/s400/DSC07624.jpg"
+    //     ,rating : 4.5
+    //   },
+    //   {
+    //     id:3,
+    //     name: "Bibimbap",
+    //     image:
+    //       "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/recipes/ck/12/03/bibimbop-ck-x.jpg?itok=RoXlp6Xb"
+    //     ,rating : 4.7
+    //   },
+    //   {
+    //     id:4,
+    //     name: "Doncasu",
+    //     image:
+    //       "https://s3-media3.fl.yelpcdn.com/bphoto/7F9eTTQ_yxaWIRytAu5feA/ls.jpg"
+    //     ,rating : 4.4
+    //   },
+    //   {
+    //     id:5,
+    //     name: "Kimbap",
+    //     image:
+    //       "http://cdn2.koreanbapsang.com/wp-content/uploads/2012/05/DSC_1238r-e1454170512295.jpg"
+    //     ,rating : 4.6
+    //   }
+    // ];
 
-    
-// import React from "react";
-// import PropTypes from "prop-types";
-// // 2.1 렌더링 하는 법 
-// const foodILike = [
-//   {
-//     id:1,
-//     name: "Kimchi",
-//     image:
-//       "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
-//     ,rating : 5
-//   },
-//   {
-//     id:2,
-//     name: "Samgyeopsal",
-//     image:
-//       "https://3.bp.blogspot.com/-hKwIBxIVcQw/WfsewX3fhJI/AAAAAAAAALk/yHxnxFXcfx4ZKSfHS_RQNKjw3bAC03AnACLcBGAs/s400/DSC07624.jpg"
-//     ,rating : 4.5
-//   },
-//   {
-//     id:3,
-//     name: "Bibimbap",
-//     image:
-//       "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/recipes/ck/12/03/bibimbop-ck-x.jpg?itok=RoXlp6Xb"
-//     ,rating : 4.7
-//   },
-//   {
-//     id:4,
-//     name: "Doncasu",
-//     image:
-//       "https://s3-media3.fl.yelpcdn.com/bphoto/7F9eTTQ_yxaWIRytAu5feA/ls.jpg"
-//     ,rating : 4.4
-//   },
-//   {
-//     id:5,
-//     name: "Kimbap",
-//     image:
-//       "http://cdn2.koreanbapsang.com/wp-content/uploads/2012/05/DSC_1238r-e1454170512295.jpg"
-//     ,rating : 4.6
-//   }
-// ];
+    // function Food({name, picture, rating}){
+    //   return (
+    //     <div>
+    //     <h1>I like {name}</h1>
+    //     <h4>{rating}/5.0</h4>
+    //     <img src={picture} alt={name} />
+    //   </div>
+    //   );
+    // }
 
-// function Food({name, picture, rating}){
-//   return (
-//     <div>
-//     <h1>I like {name}</h1>
-//     <h4>{rating}/5.0</h4>
-//     <img src={picture} alt={name} />
-//   </div>
-//   );
-// }
+    // Food.propTypes = {
+    //   name: PropTypes.string.isRequired,
+    //   picture : PropTypes.string.isRequired,
+    //   rating:PropTypes.number.isRequired
+    // };
 
-// Food.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   picture : PropTypes.string.isRequired,
-//   rating:PropTypes.number.isRequired
-// };
-
-// function App() {
-//   return (
-//     <div> 
-//       {foodILike.map(dish =>(
-//         <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating}/>
-//       ))}
-//     </div>
-//     // dish는 object 
-//   );
-// }
-// export default App;
+    // function App() {
+    //   return (
+    //     <div> 
+    //       {foodILike.map(dish =>(
+    //         <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating}/>
+    //       ))}
+    //     </div>
+    //     // dish는 object 
+    //   );
+    // }
+    // export default App;
 
 >> 여기까지가 2.4 까지의 소스 
+
+>> 여기서부터가 3.0의 소스 
+
+▼ Class 형식의 State
+> 전의 food 데이터는 state에 맞지 않기 때문에 삭제 
+> state > 동적 데이터와 함께 작업할 때 만들어진다. 변하는 데이터, 존재하지 않는 데이터등등 
+
+> function component > class component로 변경하기 
+    > class App 은 react component가 된다. 
+    > class App extends React.Component 의 뜻 ? 
+        > App component는 react component이다. 
+        > function 이 아니기 때문에 render method 를 가지고 있다. 
+    > 둘의 차이? 
+        > function component 는 함수이고 뭔가를 return 한다. 그리고 screen 표시. 
+        > class component는 class이고 react component로 부터 받아와서 screenm에 표시된다. 
+    > function component가 아닌 class component를 쓰는 이유 
+        > state를 class component가 지니고 있기 때문 
+        > state는 object 이다. 
+            > component의 data를 넣을 공간으로 데이터는 언제든 변할 수 있다. 
+            > 좋은 예제로는 counter 를 만드는 것 
+            > 바꿀 데이터를 state에 넣는 것 
+            > state를 render 에 넣고 싶으면 아래와 같이 하면 된다. 
+                > this.state.count 
+
+> App 에서 data를 어떻게 바꿀 것인가 
+    > button 1, button 2 를 만들어준다 (각각 Add, Minus)
+    > JSX 는 변경되지 않고 HTML도 그대로 
+        > 달라진 점 ? state 가 class component에 있다는 점. 
+        > 따라서 우리는 this.state 를 할 필요가 있다. 
+        > 궁극적인 목표 > component의 data를 바꾸기를 원해서 이 작업을 진행중 
+    > add = () => {}; // 자바스크립트 코드 
+    > 위의 코드를 호출하는 법? 
+        > button onclick을 사용해준다. 
+        > 자바스크립트에서는 다른 onClick이나 eventListener를 등록해야 한다. 
+        > 하지만 react에서는 자동적으로 주어진 onclick이 따로 있다. 
+        > onClick={this.add()}의 형태로 나타내지 않는 이유 
+            > ()는 즉시를 말하기 때문. 
+            > ()없이는 클릭 했을 때만 나타나기에 적합하다. 
