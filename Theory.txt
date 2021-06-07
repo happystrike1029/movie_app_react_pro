@@ -484,4 +484,41 @@
     // 위에가 3.2 까지의 소스 
 
 ▼ 실제 영화 component 넣어보기 및 계획 (3.3)
-    > 
+> movie component를 구성해보기  
+    > 먼저 loading 관련해서 자바스크립트 설정해두기 
+    01)
+    state = {
+        isLoading : true
+    };
+    02)
+    <div>
+      {isLoading ? "Loading..." : "We are ready"}
+    </div>
+    03) 
+    es6 의 문법 사용  
+    const {isLoading} = this.state;
+    > class component
+
+    > render를 하면 호출되는 life cycle method는 무엇? 
+        > componentDidMount
+    04) 
+    componentDidMount(){
+        setTimeout(()=>{
+        this.setState({isLoading : false});
+        }, 6000);
+    }
+    // 6초 에 변화를 주는 것 
+    > 이론적으로 우리가 할 일은 componentDidMount에서 data를 fetch하는 것 
+    > API 로 부터 data fetching 이 완료되면 
+        > we are ready 대신에 movie 를 render 하고 map을 만들고 movie를 render 하는 것 
+    > movie [] > array 를 만들어준다. 데이터를 담아주기 위한 array
+    > state를 선언하는 건 필수가 아니다. 
+        > 미래를 위한 계획으로 movie state 안에 movies 의 array를 가지고 있는 것 
+        > state를 추가하는 건 자유다. 
+        > setState를 사용할 때 state 안에 default 값들을 선언할 필요는 없음
+         
+
+
+
+
+    
