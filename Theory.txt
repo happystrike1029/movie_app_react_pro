@@ -517,8 +517,33 @@
         > state를 추가하는 건 자유다. 
         > setState를 사용할 때 state 안에 default 값들을 선언할 필요는 없음
          
+▼ 영화를 API 로 가져와보기(4.0)
+> axios
+    > 일반적으로 사람들이 data를 가져올 때는 fetch하지만 여기서는 axios를 사용한다. 
+        > fetch란 ? 
+        > fetch(url, options)
+            .then((response) => console.log("response : ", response))
+            .catch((error) => console.log("error : " , error));
+        > 첫번째 인자로 URL, 두번째 인자로 옵션 객체를 받고 API 호출 성공했을 경우에 응답(response) 객체를 resolve하고, 
+        실패했을 경우에는 예외(error)객체를 reject 하는 소스 
+    > axios 는 fetch 위에 있는 작은 layer 
+    > axios는 따로 설치가 필요하다 > npm install axios
+    > YTS에서 api 를 따올 것 > list Movies > JSON view 를 따로 설치하면 깔끔하게 볼 수 있다. 
+        > 가져올 수 있는 URL 이 항상 다르다. 그렇기 때문에 예시는 노마드의 다른 코드를 사용한다. 
+        > 210608 :: https://yts-proxy.nomadcoders1.now.sh/list_movies.json
 
-
-
+> axios 사용하는 법 
+    > import axios from "axios";
+    > componentDidMount에 axios.get("URL") ;
+        > 크롬 inspection에서 네트워크를 확인해준다. axios는 뭔가를 요청하고 있는 걸 확인. 
+        > axios를 통해 온 데이터를 적절하게 받을 수 있어야 한다. 
+            > const movies 의 형태를 준다.
+            > axios.get이 항상 빠른 것은 아니기 때문에 자바스크립트에서 약간 시간이 걸릴 수 있다는 걸 나타내야 한다. 
+                > componentDidMount 함수가 끝날 때까지 약간 시간이 걸릴 수 있다. 
+            > 따로 비동기식을 나타내주는 함수를 만들어준다. 
+                > getMovies = async() =>{}
+                > async() > 이 함수는 비동기임을 알린다. "너는 이걸 기다려야 해"
+                > await > 함수 내부에서는 내가 뭘 기다리길 바라는지 정확하게 서술
+                > async 없이는 await 서술 불가 
 
     
