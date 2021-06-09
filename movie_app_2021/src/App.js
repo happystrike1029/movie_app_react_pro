@@ -67,6 +67,7 @@ class App extends React.Component{ // state를 이용하기 위해서 class comp
                 title = {movie.title}
                 summary = {movie.summary}
                 poster = {movie.medium_cover_image}
+                genres = {movie.genres}
               />
             ))}
           </div>

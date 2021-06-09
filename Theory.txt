@@ -595,7 +595,7 @@
 > 추가적으로 알게된 사실 
     > console,log 를 return 값 안에 찍어주려고 하면 + 를 사용하지 않고 , 를 사용해준다. 
 
-▼ 영화 css 관련 꾸며주기 (4.1)
+▼ 영화 css 관련 꾸며주기 (4.2)
 > HTML 먼저 설정 후 CSS 를 설정해줘도 무방하다 
     > Movie.js 에서 세심하게 신경써주기 결국 세부적으로 출력되는 부분은 Movie.js
 > (ERROR) !!! 주의 
@@ -618,6 +618,35 @@ poster prop types를 가져올 수 없다고 뜸
 > (ADD) !!!
     > 원하는 모든 component에 대한 CSS 파일을 만들 수 있다. App.js 에 해당하는 코드도 가능 
     > import "./App.css";
+
+▼ 장르를 포함해서 출력(4.3)
+> 장르를 가져오는 법? 
+    > 우선 movie 데이터를 살펴본다. 안에 genres가 array형태로 나타나있는걸 쉽게 볼 수 있다. 
+    > 결국 props에 array를 포함시키면 되는 일. 
+> 순서
+    > 1) Movie.js 에 genres : propTypes.arrayOf(propTypes.string).isRequired 를 가장 먼저 추가 
+    > 2) function Movie에 컴포넌트로 genres를 추가 
+    > 3) 여기까지하고 console 을 확인해보면 error가 뜬 걸 확인할 수 있다. 
+        > 에러내용 : props genres는 movie안에 필요한 것으로 마크되었는데 이 value가 undefined되어있음 
+        > 에러내용 : class를 className으로 바꿔주는 내용 > 위에서 바꿔줬지만 정확히 뭐에 헷갈려느냐면 App 에 있는 class 형식의 자바스크립트를 사용하기 때문에 해당 class와 html의 class를 헷갈린 것. 
+                > 즉 javascript class안에 있으면 component class에 의해 혼란스러워진다. 
+                > 하지만 element inspect에서 확인시 class로 노출되기 때문에 크게 상관이 없다. 
+    > 4) genres를 App.js 에 포함시켜줘야 한다. 
+    > 5) Movie.js 에 다시 genres를 array 형태로 들여보내줘야 한다.     
+        > 주의할점 : map에 있는 각각 item은 key가 필요하다. 
+        > map은 항상 두 가지의 arguments를 준다는 사실 기억하기 
+            > map(genre, index) 넣어준다. 하나는 item / 다른 하나는 item number
+        
+▼ 스타일 타임랩스 따라가기(4.4)
+
+▼ 요약본을 줄여서 출력(4.5)
+
+▼ 깃허브에 출력(5.0)
+
+▼ 마지막으로(5.1)
+
+▼ +) 라우팅 관련 설정 (6.0)
+
 
         
 
