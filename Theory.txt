@@ -546,4 +546,55 @@
                 > await > 함수 내부에서는 내가 뭘 기다리길 바라는지 정확하게 서술
                 > async 없이는 await 서술 불가 
 
+▼ 영화를 렌더링 해주기(4.1)
+> 소스에서 console.log(movie) 해주면 
+    > 0: {id: 32619, url: "https://yts.mx/movies/baphomet-2021", imdb_code: "tt3687528", title: "Baphomet", title_english: "Baphomet", …}
+    1: {id: 32618, url: "https://yts.mx/movies/the-43rd-annual-kennedy-center-honors-2021", imdb_code: "tt14636200", title: "The 43rd Annual Kennedy Center Honors", title_english: "The 43rd Annual Kennedy Center Honors", …}
+    ... 이런식으로 소스가 나온다. 
+    > 처음 소스와는 방식이 조금 달라져서 만약 처음 예시에서 movies data를 가져오려면 겹겹이 쌓여 있는 형태의 데이터 안까지 파고들어서 가져와야 함 
+        > 즉 data - data - movies > movies.data.data.movies 로 찾아볼 수 있다.
+        > 단순히 자바스크립트를 사용한다면 위와 같지만 es6를 사용한다면 그 예시는 달라야 한다. es6 (ECMA script)
+    > const { data: {data : {movies}}} > console.log(movies) 하면 이제 같은 형식으로 나온다. 
+    > movies 를 state에 넣을 것. 
+        > this.setState({movies  : movies})
+        > 하나는 setState의 movies이고, 다른 하나는 axios에서 온 movies
+        > 즉 하나는 state에 있고 하나는 axios에서 왔다는 것
+        > 하지만 단축해서 쓸 수 있다. > this.setState({movies})
+    > isLoading도 setState에 넣어줄 것 
+        > this.setState({movies, isLoading: false});
+
+> 새로운 파일 Movie.js  
+    > 영화(movies)를 제대로 render 해주기 위해서 
+    > import React from "react"; / import propTypes from "prop-types";
+        > movies component는 state를 필요로 하지 않는다. 따라서 function 형태로 코드를 작성. 
+        > id와 year는 숫자, title, summary, poster 는 string. prop types 로 에러 방지.
+        > 먼저 API 로 받아오는 데이터를 살펴보는게 좋다.  
+    > Movie import 해서 가져오기 
+    > 전과 같은 방법으로 movie 정보를 가져오며 데이터를 나열 
+    > 데이터를 별점 순으로 줄 수 있는지 확인해보기 (sort by rating) 
+        > https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating
+    > 만들어둔 Movie.propTypes를 function Movie의 component로 부여해준다. 
+    > !!! 제일 중요 > export default Movie;
+
+> App.js 에서의 Movie.js
+    > export된 데이터를 받아와서 표현하는 방법은 크게 두가지 
+        > 1) 새로 function 을 만들어주거나 
+        > 2) movies.map으로 데이터를 부여해주거나 
+    > state로 부터 movies를 가져와야 한다. > const {isLoading, movies} = this.state;
+    > map 과 function의 공통점 > 항상 무언가를 return 해줘야만 한다. 
+        > <Movie
+          key = {movie.id}
+          id = {movie.id}
+          year = {movie.year}
+          title = {movie.title}
+          summary = {movie.summary}
+          poster = {movie.medium_cover_image}
+        />
+    > key 값 주는 것 잊지 말기 
+        > 각각 child는 유일한 key prop을 가져야만 한다. 
+> 추가적으로 알게된 사실 
+    > console,log 를 return 값 안에 찍어주려고 하면 + 를 사용하지 않고 , 를 사용해준다. 
+
+▼ 영화 css 관련 꾸며주기 (4.1)
+
     
