@@ -596,5 +596,30 @@
     > console,log 를 return 값 안에 찍어주려고 하면 + 를 사용하지 않고 , 를 사용해준다. 
 
 ▼ 영화 css 관련 꾸며주기 (4.1)
+> HTML 먼저 설정 후 CSS 를 설정해줘도 무방하다 
+    > Movie.js 에서 세심하게 신경써주기 결국 세부적으로 출력되는 부분은 Movie.js
+> (ERROR) !!! 주의 
+JSX는 javaScrit이므로 class의 다른 의미가 있습니다. 
+HTML 태그 속성을 쓰는 것은 좋지 않습니다.
+    > 에러났던 이유 : HTML 에서 사용했던 class 를 그대로 사용해서 그렇다. 
+                > 바꿔줄 부분 : className으로 바꿔주고 재사용 
+                > 해당 부분의 에러가 사라진 것을 확인할 수 있다. 
+> (ERROR) !!! 
+poster prop types를 가져올 수 없다고 뜸 
+    > 에러났던 이유 : 해당 app.js 의 component 입력에 오류가 있었다 
+        > 수정전 : poster = {movie.poster}
+        > 수정후 : poster = {movie.medium_cover_image}
+> (ADD) !!!
+    > alt와 title의 사용 이유 > 마우스를 위에 올렸을 때 영화의 이름 출력 
+> (참고) style component를 참조 style={{}}
+    > <div className="movies" style={{backgroundColor : "skyblue"}}>
+    > 자바스크립트위의 CSS 
+    > 하지만 보기 좋지 않으니 CSS 파일을 따로 만들어주는 것을 추천 
+> (ADD) !!!
+    > 원하는 모든 component에 대한 CSS 파일을 만들 수 있다. App.js 에 해당하는 코드도 가능 
+    > import "./App.css";
+
+        
+
 
     
