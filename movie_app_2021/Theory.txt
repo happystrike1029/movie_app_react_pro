@@ -1,0 +1,664 @@
+▼ 리액트 관련 작업을 시작하기 전 설치해야 할 부분 
+    > node.js 
+    > npm 
+    > npx 
+    > Visual studio code
+    > Git 
+▼ 리액트 JS를 하기 전에 알아야 할 것 
+    > HTML / CSS
+        > div / span / flexbox / display / background color 
+    > 바닐라 자바스크립트 
+        > function / variable / classes 
+        > return / arugument / variable / constants 
+        > const / let / function(args)
+    > node.js 
+        > package.json 
+▼ 리액트 쓰는 회사 
+    > Airbnb, npm , facebook 
+    > 리액트의 선호도는 점점 늘고 있는 편이며 추후에 리액트가 사라진다고 해도 여전히 자바스크립트의 지식은 향상된다. 
+
+▼ create react app 
+    > 하나의 명령을 실행해서 React Web App 을 set up 할 수 있게 해준다. 
+    > cmd 창에 npx create-react-app movie_app_2021 을 입력해준다 (원하는 폴더내에 생성)
+    > README.md 에 있는 내용을 전면수정 / package.json 에 있는 내용 중 scripts 에는 starts, build 를 제외한 나머지 삭제 
+    > yarn 은 npm 과 같은 역할 
+
+▼ git hub 안에 프로젝트를 넣어주기 (1.1)
+    > git init 으로 파일을 담을 수 있는 빈공간을 만들어주고 
+    > github 에 들어가서 repository를 만든 다음 
+    > git status 해서 제대로 다 add 됐는지 확인 
+        > 안됐으면 add 하고 commit 해주기 
+    > git remote add origin https://github.com/happystrike1029/movie_app_react_pro.git
+        git branch -M main
+        git push -u origin main
+
+▼ 리액트 구성 (1.2) 
+    > index 목적에 맞춰 비워져 있음 
+    > src 에서 초반 세팅을 위해 지워줄 것 (기본부터 알기 위해서)
+    > 제일 처음 index.js 에서 삭제 
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import App from './App';
+
+    ReactDOM.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+    );
+        > 이 모양대로 내버려둔다. 
+    
+    > 다음 차례대로 파일 삭제 
+        > LOGO / serviceWorker / index.css / app.test.js / app.css 
+        > 남는 건 index.js 와 app.js 일 수 있게 
+    
+    > app.js 에서 남는 import 는 
+        > import React from 'react'; 
+        > 21년 버전에서는 상단과 같은 import 문구가 없었다, 그런데 작동은 했다. 
+        > App.js 에서도 마찬가지로 내용은 다 삭제하고 아래와 같은 형식으로 남겨둔다. 
+    import React from "react";
+
+    function App() {
+    return (
+        <div className="App"/>
+    );
+    }
+    export default App;
+
+    > 그 다음에 다시 npm start 
+    > 그 다음부터 수정된 사항은 브라우저에 자동으로 적용이 된다. 
+        > 실험 1.  > <div> Hello 넣어보기 </div> 
+            > 자동으로 refresh 되는 모습을 발견할 수 있다. 
+    > 실행후 왼쪽 버튼 검사(f12)로 소스를 확인하면 div id ="root" 밑에 글이 들어가 있는걸 확인할 수 있다 
+        > div id="root"는 어디에? > public 에 있는 index.html 안에 
+    > react는 무엇인가 ? > react는 당신이 거기에 쓰는 모든 요소를 생성한다는 것 
+        > 자바스크립트로 만들고 html로 넣어준다. 
+        > 이 부분은 어떻게 실행이 돼 ? index.js 를 보면 보다 명확하게 알 수 있다. 
+            > ReactDOM.render > application 을 render 
+                                > 즉 import App from './App'; 부분을 렌더 해주려고 하는 것이다. 
+                                > 리액트는 app.js 의 요소를 index.js 의 getElementById 를 통해 넣어주려고 한다. 
+    > react 가 빠른 이유 
+        > 소스코드에 처음부터 HTML 을 넣지 않고 HTML에서 HTML 을 추가하거나 제거하는 법을 알고 있기 때문 
+        > application 이 로드할 때 빈 HTML 을 로드하게 되고  그 다음 react가 HTML 을 밀어넣게 된다. 
+    > virtual DOM
+        > virtual document object model 
+        > 연관성 ? 존재하지 않는다는 말, 즉 index.html 소스코드에는 존재하지 않는다는 뜻이다.
+
+▼ 첫 React Component 만들어보기 
+> react를 살펴보기  
+    > localhost를 계속 유지하기 위해서는 NPM start 를 실행하고 console을 종료하지 말아야 한다. 
+    >  해당 페이지가 시작되지 않거나 찾을 수 없다는 메시지 > 서버를 제대로 실행하지 않았기 때문 
+    > index.js 에 있는 App 을 component 라고 부른다. 
+        > react 는 component와 함께 동작한다. 
+        > component가 data를 보여주게 할 것 
+        > component란? > HTML 을 반환하는 함수
+            > 즉 우리는 function.application을 가지고 있고 이건 HTML을 반환한다. (App.js)
+    > 자바스크립트와 HTML 사이의 이런 조합을 jsx 라고 부른다.
+        > react에 특화된 개념이라 다른 곳에는 없는 유일한 것. 
+        > App 하나만 렌더링 된다는 특징이 있다. 
+            > 즉 내가 다른 파일 Potato.js 를 만든다고 해도 <App /> 옆에 <Potato />를 둔다고 실행되지 않는다. 
+            > 이런때는 App.js 파일 안에 Potato를 import 시켜준다. 즉 이런 형태로. 
+            
+            import React from "react";
+            import Potato from './Potato';
+
+            function App() {
+            return (
+                // <div className="App"/>
+                <div> 
+                <h1>
+                Hello~!!
+                </h1>
+                <Potato />
+                </div>
+            );
+            }
+            export default App;
+
+    > react는 component를 가져와서 브라우저가 이해할 수 있는 평범한 일반 HTML로 만든다. 
+    > !!! 즉 jsx는 javascript 안의 HTML이다. 
+    > react application은 한 번에 하나의 component만 rendering(렌더링) 할 수 있다는 것 
+        > 따라서 모든 것은 application 안에 들어가야 한다. 
+    // 2.0의 형태 
+    // function App() {
+    //   return (
+    //     // <div className="App"/>
+    //     <div> 
+    //       <h1>
+    //        Hello~!!
+    //       </h1>
+    //       <Food fav="rice"
+    //         // something = {true}
+    //         // papapa = {["hello", 1, 2, 3, 4, true]}
+    //       />
+    //       <Food fav="noodle" />
+    //       <Food fav="soup" />
+    //     </div>
+    //   );
+    // }
+    // export default App;`
+▼ 재사용가능한 Component with JSX (2.1)
+> import Potato 를 지우고도 사용할 수 있는 방법. 
+    > App.js 내에 Potato function 을 만들어준다. 
+    > react 의 장점 > 재사용 가능한 component를 만들 수 있다는 점, 계속해서 반복해서 사용 가능. 
+    > component는 대문자로 시작해야하고, component로 정보를 보낼 수 있다. 
+    > father 가 children 에게 data를 어떻게 보낼까? 
+    > app이 어떻게 food에게 props를 사용해서 data를 보낼까? 
+    > props란? 뭐든지 component에 넣게되는 것들. 
+        > props는 어디로 가나? > argument로 간다. food의 첫번째 argument
+    import React from "react";
+
+    function Food({fav}){
+    //만약 {fav}를 빼줬더라면 props를 가져와서 props의 fav를 입력해줘야 한다. 
+    //console.log(props);
+    return <h1>I like {fav}</h1>;
+    }
+
+    /*
+    function Food(props){
+    return <h1>I like {props.fav}</h1>;
+    }
+    */
+
+
+    function App() {
+    return (
+        // <div className="App"/>
+        <div> 
+        <h1>
+        Hello~!!
+        </h1>
+        <Food fav="rice" // fav 라는 이름의 property 를 rice라는 value 로 준 것 
+            // something = {true}
+            // papapa = {["hello", 1, 2, 3, 4, true]}
+        />
+        <Food fav="noodle" />
+        <Food fav="soup" />
+        </div>
+    );
+    }
+    export default App;
+
+    > 위와 같은 형태 
+    > react를 통해 props 를 사용한다. > react는 전달한 props를 가져가는 일 
+    > father component에서 children component로 원하는 많은 props를 보낼 수 있다. 
+        > 모든 프로퍼티를 food function component의 인자로 넣을 것이다. 
+    > es6의 버전을 적용시킨 최신 자바스크립트를 사용 
+    > 내부에서 얻는 방법 > 인자값을 {} 내부에 써준다. props 가 아닌 props 내에 있는 세세한 인자값 
+                        > 위와 같은 경우에는 {fav} 로 가져오기만 하면 된다. 
+    > jsx 는 단지 HTML + javascript 
+
+▼ 동적인 Component
+> 위와 같은 형태는 전혀 효율적이지 못하다. 계속해서 복붙해 넣을 수도 없는 노릇. 
+    > 데이터들은 웹사이트에서 온 데이터들, 갖고 있지 않은 데이터를 붙여 넣는 작업은 할수 없다.  
+> 웹사이트에 동적인 데이터를 추가하는 방법. 
+    > array 로 데이터를 쌓고 자동적으로 food를 이름, 이미지 순으로 렌더링 하는 법? 
+        > 자바스크립트 함수를 사용한다. map 을 사용하는 법 
+    > map 은 array의 각 item에서 function을 실행하는 자바스크립트 function 
+        > function의 result 를 갖는 array를 다시 던져준다. 
+        > const friends = ["LEE", "KIM", "HWANG", "HAN"];
+        friends.map(current => {
+            cosole.log(current);
+            return 0
+        });
+
+        // 옛날 버전은 아래와 같다
+        friends.map(function(current){
+            console.log(current);
+            return 0;
+        });
+        > 해석 : map 은 funciton을 취해서 그 funciton을 array의 각 item에 적용 
+                : array [0,0,0,0]의 형태를 갖게 된다. 
+        
+        > 심화버전 2
+        friends.map(friend => {
+            return friend + S2;
+        });
+
+        function App() {
+        return (
+            // <div className="App"/>
+            <div> 
+            {foodILike.map(dish => (<Food name={dish.name} picture={dish.image}/>))}
+            </div>
+            // dish는 object 
+        );
+        }
+        export default App;
+        > 위와 같은 형태로 작성 
+
+▼  map 요약 (심화단계)
+> function 을 하나 더 만드는 것 
+    > map 에 function 만 담는 경우 그렇게 한다. 
+    > {foodILike.map(renderFood)} 인 경우에만 
+    Warning: Each child in a list should have a unique "key" prop. 
+        > react의 element들은 유일해야 하고 list 안으로 집어넣을때 유일성을 잃어버린다는 의미 
+        > 즉 id를 추가해준다. 
+        > key={dish.id}를 추가해줌 , 리액트 내부에서 사용되는 거기때문에 에러는 사라진다. 
+        > alt={name}은 시각장애인분들을 위한 것 
+    > 다음에는 props에 대해 더 명확하게 할 것
+        > props에 따라서 해당 글이 사라질수도, 이미지가 깨질수도 있기 때문에 우리가 원하는 props이 우리가 갖고 있는 props인지 체크하는 방법이 필요하다. 
+
+▼ props 체크 
+> father component로 부터 전달받은 props가 우리가 예상한 props인지를 알아야 한다. 
+    > rating 을 달아준다. 
+    > node.js 에 따로 설치해줘야 함 (npm i prop-types)
+        > 항상 주의할 것 cd movie_app_2021 경로에서 설치해주기 상위 경로로 하면 인식을 못함 
+        > prop-types 의 역할 > 만약 picture라는 props가 잘못해서 images 로 들어갔을 때 이 component는 동작하지 않을거라고 알려주는 역할 
+        > Food.propTypes = {
+        name: PropTypes.string.isRequired,
+        picture : PropTypes.string.isRequired,
+        rating:PropTypes.string.isRequired
+        }; << 로 사용되나 강의에서 본 PropTypes는 사용할 수 없다. 대소문자를 구분하기 때문에. 
+        > 추후에 콘솔을 확인하면 prop type 관련 에러가 떠있다 
+            > rating의 type이 현재 숫자로 제공 됐지만 string을 기대하고 있다는 뜻
+            > number 로 바꿔주면 관련 에러가 사라진다.  
+            > 즉 콘솔을 확인하면서 에러를 체크할 수 있게 해주는 역할을 한다는 뜻 
+            > isRequired도 매번 쓸 필요 없다. 하지만 필수가 아니라는 뜻이기 때문에 에러가 없어짐. 
+                > undefined, number만 읽기 때문 
+            > propTypes react를 따로 찾아보면 관련 문서가 나온다. 
+            > 필수로 알아야 하는 것들 : jspx, props, state 
+    // import React from "react";
+    // import PropTypes from "prop-types";
+    // // 2.1 렌더링 하는 법 
+    // const foodILike = [
+    //   {
+    //     id:1,
+    //     name: "Kimchi",
+    //     image:
+    //       "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
+    //     ,rating : 5
+    //   },
+    //   {
+    //     id:2,
+    //     name: "Samgyeopsal",
+    //     image:
+    //       "https://3.bp.blogspot.com/-hKwIBxIVcQw/WfsewX3fhJI/AAAAAAAAALk/yHxnxFXcfx4ZKSfHS_RQNKjw3bAC03AnACLcBGAs/s400/DSC07624.jpg"
+    //     ,rating : 4.5
+    //   },
+    //   {
+    //     id:3,
+    //     name: "Bibimbap",
+    //     image:
+    //       "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/recipes/ck/12/03/bibimbop-ck-x.jpg?itok=RoXlp6Xb"
+    //     ,rating : 4.7
+    //   },
+    //   {
+    //     id:4,
+    //     name: "Doncasu",
+    //     image:
+    //       "https://s3-media3.fl.yelpcdn.com/bphoto/7F9eTTQ_yxaWIRytAu5feA/ls.jpg"
+    //     ,rating : 4.4
+    //   },
+    //   {
+    //     id:5,
+    //     name: "Kimbap",
+    //     image:
+    //       "http://cdn2.koreanbapsang.com/wp-content/uploads/2012/05/DSC_1238r-e1454170512295.jpg"
+    //     ,rating : 4.6
+    //   }
+    // ];
+
+    // function Food({name, picture, rating}){
+    //   return (
+    //     <div>
+    //     <h1>I like {name}</h1>
+    //     <h4>{rating}/5.0</h4>
+    //     <img src={picture} alt={name} />
+    //   </div>
+    //   );
+    // }
+
+    // Food.propTypes = {
+    //   name: PropTypes.string.isRequired,
+    //   picture : PropTypes.string.isRequired,
+    //   rating:PropTypes.number.isRequired
+    // };
+
+    // function App() {
+    //   return (
+    //     <div> 
+    //       {foodILike.map(dish =>(
+    //         <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating}/>
+    //       ))}
+    //     </div>
+    //     // dish는 object 
+    //   );
+    // }
+    // export default App;
+
+>> 여기까지가 2.4 까지의 소스 
+
+>> 여기서부터가 3.0의 소스 
+
+▼ Class 형식의 State(3.0)
+> 전의 food 데이터는 state에 맞지 않기 때문에 삭제 
+> state > 동적 데이터와 함께 작업할 때 만들어진다. 변하는 데이터, 존재하지 않는 데이터등등 
+
+> function component > class component로 변경하기 
+    > class App 은 react component가 된다. 
+    > class App extends React.Component 의 뜻 ? 
+        > App component는 react component이다. 
+        > function 이 아니기 때문에 render method 를 가지고 있다. 
+    > 둘의 차이? 
+        > function component 는 함수이고 뭔가를 return 한다. 그리고 screen 표시. 
+        > class component는 class이고 react component로 부터 받아와서 screen에 표시된다. 
+    > function component가 아닌 class component를 쓰는 이유 
+        > state를 class component가 지니고 있기 때문 
+        > state는 object 이다. 
+            > component의 data를 넣을 공간으로 데이터는 언제든 변할 수 있다. 
+            > 좋은 예제로는 counter 를 만드는 것 
+            > 바꿀 데이터를 state에 넣어준다.
+            > state를 render 에 넣고 싶으면 아래와 같이 하면 된다. 
+                > this.state.count 
+
+> App 에서 data를 어떻게 바꿀 것인가 
+    > button 1, button 2 를 만들어준다 (각각 Add, Minus)
+    > JSX 는 변경되지 않고 HTML도 그대로 
+        > 달라진 점 ? state 가 class component에 있다는 점. 
+        > 따라서 우리는 this.state 를 할 필요가 있다. 
+        > 궁극적인 목표 > component의 data를 바꾸기를 원해서 이 작업을 진행중 
+    > add = () => {}; // 자바스크립트 코드 
+    > 위의 코드를 호출하는 법? 
+        > button onclick을 사용해준다. 
+        > 자바스크립트에서는 다른 onClick이나 eventListener를 등록해야 한다. 
+        > 하지만 react에서는 자동적으로 주어진 onclick이 따로 있다. 
+        > onClick={this.add()}의 형태로 나타내지 않는 이유 
+            > ()는 즉시를 말하기 때문. 
+            > ()없이는 클릭 했을 때만 나타나기에 적합하다. 
+
+▼ State를 다루는 방식(3.1)
+> state는 object 인데 뭘 할 수 있는지 
+    > this.state.count = 1; // 이 코드는 작용하지 않는다, 왜? 
+        > 절대 state를 직접 변경하지 말라는 코드의 경고문이 뜨기 때문 
+        > 정확한 이유 : 이런 식으로 코드 작성시 react는 render function을 refresh하기 않기 때문이다. 
+        > 결론 : 매번 state의 상태를 변경할 때 react가 render function을 알아서 호출해서 바꿔줄 수 있어야 함. 
+        > 이런 에러를 방지하기 위해 setState라는 함수를 자동적으로 생성할 수 있다. 
+
+> setState function 
+    > react는 우리가 언제 setState를 호출할 지를 안다. 
+        > 또한 언제 view를 refresh하길 원하는지를 안다. 
+        > render function을 refresh하길 원하는지를 안다. 
+    > 내가 현재 요청하고자 하는 기능 
+        > 내 state를 바꾸고 싶지만 react가 어떤 것이든 refresh해주길 원한다. 
+    > this.setState()
+        > 새로운 state를 취해야 한다. 
+        > 이해하기 어렵다면 > this.setState({count : 1});
+        > 즉 내가 setState를 호출하면 react는 1) state를 refresh하고, 또한 2) render function 을 호출할 것이다. 
+        > 부분 변경이 실시간으로 가능한 이유, virtual DOM 을 지니고 있기 때문 
+    > this.setState({count : this.state.count + 1});
+        > 좋은 예시의 코드는 아님 
+            > state에 너무 의존한 코드로 비춰짐, 성능상 좋지도 않음.  
+        > function 방식으로 바꿔줄 필요가 있음
+    > this.setState(current => ({count : current.count + 1}));
+        > this.state.count 를 대신해서 current를 이용해 counter를 만들어준다. 
+        > state를 set할 때, react에서 외부의 상태에 의존하지 않는 가장 좋은 방법.\
+> 가장 중요한 개념 
+    > 매순간 1) setState를 호출할 때 마다 react는 2) 새로운 state와 함께 3) render funciton을 호출할 것이다. 
+
+▼ React Component 생명주기 메서드(3.2)
+> react component에서 사용하는 유일한 function  
+    > render funciton
+    > add와 minus function 은 우리가 직접 만든 function
+    > react class component는 단순히 render 말고 더 많은 걸 가지고 있다. 
+    > life cycle method 를 가지고 있다. 
+> Lift cycle method? 
+    > 기본적으로 react 가 component를 생성하고 없애는 방법 
+    > component가 생성될 때, render 전에 호출되는 몇 가지 function 이 있다. 
+    > 필요로 하는 몇가지 function 위주 (전부를 보지는 않음)
+        1) mounting > 태어나는 것
+        2) updating > 업데이트 하는 것 
+        3) unmounting > component가 죽는 걸 의미 
+            > 즉 페이지를 바꿀 때
+    > 먼저 호출되는 function 
+        > constructor > react에서 오지 않음 
+            > 자바스크립트에서 class를 만들 때 호출되는 함수 
+            constructor(props){
+            super(props);
+            console.log("hello");
+            }  
+
+            render(){
+                console.log("I'm rendering");
+            }
+            > 시작 전에 호출됐고 그런 다음에 render가 호출됐다. 
+    > 즉 component가 mount 될 때(스크린에 표시될때) (mounting)
+        1) constructor
+        2) render
+        3) componentDidMount 
+    > component에서 setState가 실행될 때 (updating)
+        1) render()
+        2) componentDidUpdate()
+            > 따라서 setState를 호출하면 component를 호출하고 render를 호출한 다음 업데이트가 완료되면 
+            > 그제야 componentDidUpdate 실행 
+    > component에서 unmounting 실행할 때 
+        > 특히 다른 페이지로 옮겨가려고 할 때 
+    import React from "react";
+
+    class App extends React.Component{
+    // constructor(props){
+    //   super(props);
+    //   console.log("hello");
+    // }  
+    state = {
+        count : 0
+        };
+
+        add = () => {
+        //console.log("add");
+        // this.setState(test => ({count : test.count + 1})); 가능 
+        this.setState(current => ({count : current.count + 1}));
+        };
+
+        minus = () =>{
+        //console.log("minus");
+        this.setState(current => ({count : current.count - 1}));
+        };
+
+        componentDidMount(){
+        console.log("Component rendered");
+        }
+
+        componentDidUpdate(){
+        console.log("I just Updated");
+        }
+
+        componentWillUnmount(){
+        console.log("Goodbye, cruel world");
+        }
+
+        render(){
+        console.log("I'm rendering");
+        return(
+            <div>
+            <h1>The number is :  {this.state.count}</h1>
+            <button onClick={this.add}>Add</button>
+            <button onClick={this.minus}>Minus</button>
+            </div>
+        );
+        }
+    }
+
+    export default App;
+
+    // 위에가 3.2 까지의 소스 
+
+▼ 실제 영화 component 넣어보기 및 계획 (3.3)
+> movie component를 구성해보기  
+    > 먼저 loading 관련해서 자바스크립트 설정해두기 
+    01)
+    state = {
+        isLoading : true
+    };
+    02)
+    <div>
+      {isLoading ? "Loading..." : "We are ready"}
+    </div>
+    03) 
+    es6 의 문법 사용  
+    const {isLoading} = this.state;
+    > class component
+
+    > render를 하면 호출되는 life cycle method는 무엇? 
+        > componentDidMount
+    04) 
+    componentDidMount(){
+        setTimeout(()=>{
+        this.setState({isLoading : false});
+        }, 6000);
+    }
+    // 6초 에 변화를 주는 것 
+    > 이론적으로 우리가 할 일은 componentDidMount에서 data를 fetch하는 것 
+    > API 로 부터 data fetching 이 완료되면 
+        > we are ready 대신에 movie 를 render 하고 map을 만들고 movie를 render 하는 것 
+    > movie [] > array 를 만들어준다. 데이터를 담아주기 위한 array
+    > state를 선언하는 건 필수가 아니다. 
+        > 미래를 위한 계획으로 movie state 안에 movies 의 array를 가지고 있는 것 
+        > state를 추가하는 건 자유다. 
+        > setState를 사용할 때 state 안에 default 값들을 선언할 필요는 없음
+         
+▼ 영화를 API 로 가져와보기(4.0)
+> axios
+    > 일반적으로 사람들이 data를 가져올 때는 fetch하지만 여기서는 axios를 사용한다. 
+        > fetch란 ? 
+        > fetch(url, options)
+            .then((response) => console.log("response : ", response))
+            .catch((error) => console.log("error : " , error));
+        > 첫번째 인자로 URL, 두번째 인자로 옵션 객체를 받고 API 호출 성공했을 경우에 응답(response) 객체를 resolve하고, 
+        실패했을 경우에는 예외(error)객체를 reject 하는 소스 
+    > axios 는 fetch 위에 있는 작은 layer 
+    > axios는 따로 설치가 필요하다 > npm install axios
+    > YTS에서 api 를 따올 것 > list Movies > JSON view 를 따로 설치하면 깔끔하게 볼 수 있다. 
+        > 가져올 수 있는 URL 이 항상 다르다. 그렇기 때문에 예시는 노마드의 다른 코드를 사용한다. 
+        > 210608 :: https://yts-proxy.nomadcoders1.now.sh/list_movies.json
+
+> axios 사용하는 법 
+    > import axios from "axios";
+    > componentDidMount에 axios.get("URL") ;
+        > 크롬 inspection에서 네트워크를 확인해준다. axios는 뭔가를 요청하고 있는 걸 확인. 
+        > axios를 통해 온 데이터를 적절하게 받을 수 있어야 한다. 
+            > const movies 의 형태를 준다.
+            > axios.get이 항상 빠른 것은 아니기 때문에 자바스크립트에서 약간 시간이 걸릴 수 있다는 걸 나타내야 한다. 
+                > componentDidMount 함수가 끝날 때까지 약간 시간이 걸릴 수 있다. 
+            > 따로 비동기식을 나타내주는 함수를 만들어준다. 
+                > getMovies = async() =>{}
+                > async() > 이 함수는 비동기임을 알린다. "너는 이걸 기다려야 해"
+                > await > 함수 내부에서는 내가 뭘 기다리길 바라는지 정확하게 서술
+                > async 없이는 await 서술 불가 
+
+▼ 영화를 렌더링 해주기(4.1)
+> 소스에서 console.log(movie) 해주면 
+    > 0: {id: 32619, url: "https://yts.mx/movies/baphomet-2021", imdb_code: "tt3687528", title: "Baphomet", title_english: "Baphomet", …}
+    1: {id: 32618, url: "https://yts.mx/movies/the-43rd-annual-kennedy-center-honors-2021", imdb_code: "tt14636200", title: "The 43rd Annual Kennedy Center Honors", title_english: "The 43rd Annual Kennedy Center Honors", …}
+    ... 이런식으로 소스가 나온다. 
+    > 처음 소스와는 방식이 조금 달라져서 만약 처음 예시에서 movies data를 가져오려면 겹겹이 쌓여 있는 형태의 데이터 안까지 파고들어서 가져와야 함 
+        > 즉 data - data - movies > movies.data.data.movies 로 찾아볼 수 있다.
+        > 단순히 자바스크립트를 사용한다면 위와 같지만 es6를 사용한다면 그 예시는 달라야 한다. es6 (ECMA script)
+    > const { data: {data : {movies}}} > console.log(movies) 하면 이제 같은 형식으로 나온다. 
+    > movies 를 state에 넣을 것. 
+        > this.setState({movies  : movies})
+        > 하나는 setState의 movies이고, 다른 하나는 axios에서 온 movies
+        > 즉 하나는 state에 있고 하나는 axios에서 왔다는 것
+        > 하지만 단축해서 쓸 수 있다. > this.setState({movies})
+    > isLoading도 setState에 넣어줄 것 
+        > this.setState({movies, isLoading: false});
+
+> 새로운 파일 Movie.js  
+    > 영화(movies)를 제대로 render 해주기 위해서 
+    > import React from "react"; / import propTypes from "prop-types";
+        > movies component는 state를 필요로 하지 않는다. 따라서 function 형태로 코드를 작성. 
+        > id와 year는 숫자, title, summary, poster 는 string. prop types 로 에러 방지.
+        > 먼저 API 로 받아오는 데이터를 살펴보는게 좋다.  
+    > Movie import 해서 가져오기 
+    > 전과 같은 방법으로 movie 정보를 가져오며 데이터를 나열 
+    > 데이터를 별점 순으로 줄 수 있는지 확인해보기 (sort by rating) 
+        > https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating
+    > 만들어둔 Movie.propTypes를 function Movie의 component로 부여해준다. 
+    > !!! 제일 중요 > export default Movie;
+
+> App.js 에서의 Movie.js
+    > export된 데이터를 받아와서 표현하는 방법은 크게 두가지 
+        > 1) 새로 function 을 만들어주거나 
+        > 2) movies.map으로 데이터를 부여해주거나 
+    > state로 부터 movies를 가져와야 한다. > const {isLoading, movies} = this.state;
+    > map 과 function의 공통점 > 항상 무언가를 return 해줘야만 한다. 
+        > <Movie
+          key = {movie.id}
+          id = {movie.id}
+          year = {movie.year}
+          title = {movie.title}
+          summary = {movie.summary}
+          poster = {movie.medium_cover_image}
+        />
+    > key 값 주는 것 잊지 말기 
+        > 각각 child는 유일한 key prop을 가져야만 한다. 
+> 추가적으로 알게된 사실 
+    > console,log 를 return 값 안에 찍어주려고 하면 + 를 사용하지 않고 , 를 사용해준다. 
+
+▼ 영화 css 관련 꾸며주기 (4.2)
+> HTML 먼저 설정 후 CSS 를 설정해줘도 무방하다 
+    > Movie.js 에서 세심하게 신경써주기 결국 세부적으로 출력되는 부분은 Movie.js
+> (ERROR) !!! 주의 
+JSX는 javaScrit이므로 class의 다른 의미가 있습니다. 
+HTML 태그 속성을 쓰는 것은 좋지 않습니다.
+    > 에러났던 이유 : HTML 에서 사용했던 class 를 그대로 사용해서 그렇다. 
+                > 바꿔줄 부분 : className으로 바꿔주고 재사용 
+                > 해당 부분의 에러가 사라진 것을 확인할 수 있다. 
+> (ERROR) !!! 
+poster prop types를 가져올 수 없다고 뜸 
+    > 에러났던 이유 : 해당 app.js 의 component 입력에 오류가 있었다 
+        > 수정전 : poster = {movie.poster}
+        > 수정후 : poster = {movie.medium_cover_image}
+> (ADD) !!!
+    > alt와 title의 사용 이유 > 마우스를 위에 올렸을 때 영화의 이름 출력 
+> (참고) style component를 참조 style={{}}
+    > <div className="movies" style={{backgroundColor : "skyblue"}}>
+    > 자바스크립트위의 CSS 
+    > 하지만 보기 좋지 않으니 CSS 파일을 따로 만들어주는 것을 추천 
+> (ADD) !!!
+    > 원하는 모든 component에 대한 CSS 파일을 만들 수 있다. App.js 에 해당하는 코드도 가능 
+    > import "./App.css";
+
+▼ 장르를 포함해서 출력(4.3)
+> 장르를 가져오는 법? 
+    > 우선 movie 데이터를 살펴본다. 안에 genres가 array형태로 나타나있는걸 쉽게 볼 수 있다. 
+    > 결국 props에 array를 포함시키면 되는 일. 
+> 순서
+    > 1) Movie.js 에 genres : propTypes.arrayOf(propTypes.string).isRequired 를 가장 먼저 추가 
+    > 2) function Movie에 컴포넌트로 genres를 추가 
+    > 3) 여기까지하고 console 을 확인해보면 error가 뜬 걸 확인할 수 있다. 
+        > 에러내용 : props genres는 movie안에 필요한 것으로 마크되었는데 이 value가 undefined되어있음 
+        > 에러내용 : class를 className으로 바꿔주는 내용 > 위에서 바꿔줬지만 정확히 뭐에 헷갈려느냐면 App 에 있는 class 형식의 자바스크립트를 사용하기 때문에 해당 class와 html의 class를 헷갈린 것. 
+                > 즉 javascript class안에 있으면 component class에 의해 혼란스러워진다. 
+                > 하지만 element inspect에서 확인시 class로 노출되기 때문에 크게 상관이 없다. 
+    > 4) genres를 App.js 에 포함시켜줘야 한다. 
+    > 5) Movie.js 에 다시 genres를 array 형태로 들여보내줘야 한다.     
+        > 주의할점 : map에 있는 각각 item은 key가 필요하다. 
+        > map은 항상 두 가지의 arguments를 준다는 사실 기억하기 
+            > map(genre, index) 넣어준다. 하나는 item / 다른 하나는 item number
+        
+▼ 스타일 타임랩스 따라가기(4.4)
+
+▼ 요약본을 줄여서 출력(4.5)
+
+▼ 깃허브에 출력(5.0)
+
+▼ 마지막으로(5.1)
+
+▼ +) 라우팅 관련 설정 (6.0) << 이게 가장 중요 
+> 상단에 메뉴바를 만들고 인터랙티브 하게 만들고자 하는 목표 
+> react-router dom 
+> 리소스 수정 
+    > routes / components 라는 폴더 만들어주기 
+    > components에는 Movie.css 와 Movie.js 넣어주기 
+    > routes에는 따로 새로 만들어줄 페이지 설정 
+        > About.js / Home.css / Home.js
+    > App.js 에 있는 소스들 전부 Home.js 으로 이동하고 새로 리셋해주기 
+        > App.css 도 Home.css 로 이동된 소스 
+        > App.js 는 리셋해서 span 안에 글자만 넣어준 형식으로 내버려 두기 
+    
+
+        
+
+
+    
