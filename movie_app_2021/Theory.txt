@@ -672,7 +672,23 @@ poster prop types를 가져올 수 없다고 뜸
         > exact {true}를 넣어주면 단 하나의 페이지를 불러온다.
         > exact의 의미? 이거 아니면 렌더링을 안한다는 뜻.  
 
-        
+▼ 사이드 Navigation 만들기 (6.2) : Building the Navigation
+> 네비게이션은 모든 페이지에 존재해야 하므로 App.js 에 넣어주어야 한다. 
+    > return 안에다가 링크를 달아주는 <a href=""> 추가 
+    > 초기에 Home 버튼만 누르면 리액트가 죽고, 새 페이지가 새로고침되는 문제 발생 
+    > 인터랙션을 원하지만 페이지를 강제로 새로고침하고 리액트 죽이는 건 옳지 않다. 
+    > a href 를 사용하는 대신 Link 를 사용해주기
+        > Link 를 사용할 때는 Link to 가 되어야 한다. 
+        > Link는 반드시 router 안에서 사용되어야 한다.  
+            > <HashRouter> <Navigation /> </HashRouter>
+        > footer 나 header 같은 경우 router 안에 모든걸 넣은 필요는 없다. 
+    > HashRouter 대신해서 BrowserRouter를 넣어주는 경우 
+        > /#/ 같은 현상을 없애준다. 
+        > 브라우저 라우터는 github pages에는 적용하기 어렵다.
+
+ 
+▼ 라우팅으로 인한 페이지 전환 (6.3) : Sharing Props Between Routes 
+>     
 
 
     
