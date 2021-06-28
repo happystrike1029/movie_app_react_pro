@@ -1,9 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import propTypes from "prop-types";
 import "./Movie.css";
 
 function Movie({id, year, title, summary, poster, genres}){
     return (
+        <Link to={{
+            pathname : "/movie-detail",
+            state : {
+                year, 
+                title,
+                summary,
+                poster,
+                genres
+            }
+        }}>
         <div className="movie">
             <img src={poster} alt={title} title={title}/>
             <div className="movie_data">
@@ -19,6 +30,7 @@ function Movie({id, year, title, summary, poster, genres}){
                 <p className="movie_summary">{summary.slice(0, 180)}...</p>
             </div>
         </div>
+        </Link>
     );
 }
 
