@@ -647,7 +647,7 @@ poster prop types를 가져올 수 없다고 뜸
 
 ▼ +) 라우팅 관련 설정 (6.0) << 이게 가장 중요 
 > 상단에 메뉴바를 만들고 인터랙티브 하게 만들고자 하는 목표 
-> react-router dom 
+> react-router dom > npm install react-router dom 
 > 리소스 수정 
     > routes / components 라는 폴더 만들어주기 
     > components에는 Movie.css 와 Movie.js 넣어주기 
@@ -657,6 +657,20 @@ poster prop types를 가져올 수 없다고 뜸
         > App.css 도 Home.css 로 이동된 소스 
         > App.js 는 리셋해서 span 안에 글자만 넣어준 형식으로 내버려 두기 
     
+▼ 라우터 만들기 (6.1) : Building the router
+> 라우터는 페이지 전환을 위한 기본적 컴포넌트 
+> import {HashRouter, Route} from "react-router-dom";
+    > HashRouter안에 Route를 넣어준다. 
+    > Route 안에는 두 개의 중요한 props가 들어간다. 하나는 랜더링할 스크린, 하나는 뭘 할지 정해주는 prop
+    <Route path="/about" component={About}/> about라는 경로로 가면 About이라는 컴포넌트를 보여달라는 의미 
+    > 스크린을 넣으니 원하는 만큼 path를 만들 수 있다. 
+    > 처음 실행시 아래와 같이 실행되면 페이지가 겹쳐 보인다. 
+    <Route path="/" component={Home} />
+    <Route path="/about" component={About}/>
+        > 이유? 리액트 라우터는 기본적으로 URL을 가지고 온 다음 비교를 한다. 
+        > /가 라우트로 여겨져서 겹쳐질 수 밖에 없었다. / 와 /about이 합쳐진. 2개의 컴포넌트가 동시에 렌더링 되는 이유. 
+        > exact {true}를 넣어주면 단 하나의 페이지를 불러온다.
+        > exact의 의미? 이거 아니면 렌더링을 안한다는 뜻.  
 
         
 
